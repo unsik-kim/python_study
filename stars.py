@@ -70,19 +70,19 @@ while(1) :
 
 for i in range(x) :
     n = int((x+1)/2)
-    m = n+1
-    if i<m :
+
+    if i<n :
         for j in range((x-n)-i) :
-            print('_', end=' ')
+            print(' ', end=' ')
         for j in range(1+(i*2)) :
             print('*', end=' ')
         for j in range((x-n)-i) :
-            print('_', end=' ')
-    else :
-        for j in range() :
             print(' ', end=' ')
-        for j in range() :
+    else :
+        for j in range(i-n+1) :
+            print(' ', end=' ')
+        for j in range(x-(2*(i-n+1))) :
             print('*', end=' ')
-        for j in range() :
+        for j in range(i-n+1) :
             print(' ', end=' ')
     print()
