@@ -117,6 +117,17 @@ def searchAvg(data):
     for key, value in data.items():
         if value[4]>=score:
             resultDict.setdefault(key, value)
+
+    
+
+    '''
+    max = 0.0
+    copyDict = resultDict
+    for key, value in copyDict.items():
+        if value[4] > max:
+            resultDict.pop(key)
+            resultDict.setdefault(key, value)
+    '''
     printDic(resultDict)
 
 def fileLoad():
@@ -133,11 +144,11 @@ def fileLoad():
 def fileSave(data):
     with open('gradeDB.p', 'wb') as file:
         pickle.dump(data,file)
-    pass
+    
 
 def main():
-    while True:
-        mainDict = fileLoad()
+    mainDict = fileLoad()
+    while True: 
         print('--------------------------------------------------------')
         print('| 1.입력  2.출력  3.검색  4.삭제  5.수정  6.종료 |')
         useFunction = int(input('사용할 기능을 선택하세요. : '))
@@ -160,3 +171,4 @@ def main():
         
         
 main()
+
