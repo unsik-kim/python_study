@@ -55,9 +55,12 @@ class ManageStudent(ManageFile):
         print('데이터 수정 완료되었습니다.')
 
     
-    def delete(self):
-
-        super().save(self.data)
+    def delete(self, object, name):
+        print('| 선택된 데이터 |')
+        Function.printData(Function.searchName(object.data, name))
+        object.data.pop(name)
+        super().save(object.data)
+        print('데이터 삭제 완료되었습니다.')
         pass
 
 
@@ -163,13 +166,17 @@ class start():
         if useFunction==1:
             name = input('검색할 이름을 입력하세요 : ')
             if Function.findName(object.data, name)==True:
-                print('| 현재 데이터 |')
-                Function.printData(Function.searchName(object.data, name))
+                dictData = Function.searchName(object.data, name)
+
+                print('| 검색 데이터 |')
+                Function.printData(dictData)
             else:
                 print('해당 데이터를 찾을 수 없습니다.')
         elif useFunction==2:
-            print('| 현재 데이터 |')
-            Function.printData(Function.searchScore(object.data))
+            dictData = Function.searchScore(object.data)
+
+            print('| 검색 데이터 |')
+            Function.printData(dictData)
 
 
             
@@ -209,8 +216,12 @@ class start():
 
     @staticmethod
     def deleteData(object):
-        pass
+        name = input('삭제할 이름을 입력하세요 :')
 
+        if Function.findName(object.data, name)==True:
+            object.delete(object, name)
+        else:
+            print('해당 데이터를 찾을 수 없습니다.')
 
 
 def main():
