@@ -107,7 +107,7 @@ class Function():
                 resultDict.setdefault(key, value)
         pass
 
-        return resultDict
+        return Function.sortDict(resultDict)
 
     @staticmethod
     def printData(dict):
@@ -120,14 +120,19 @@ class Function():
         return True
 
     @staticmethod
-    def sortDict(object, option=0):
+    def sortDict(dict):
         listData = []
-        for key, value in object.dict.items():
-                lsitData.append()
-        while True:
-            for i in range(len(listData)):
-                if listData[i][]
-        
+        sortedDict = {}
+        for key, value in dict.items():
+            listData.append([key]+value)
+       
+        sortedData = sorted(listData, key=lambda x: x[5], reverse=True)
+
+        for i in range(len(sortedData)):
+            sortedDict.setdefault(sortedData[i][0], [sortedData[i][1], sortedData[i][2], sortedData[i][3], sortedData[i][4], sortedData[i][5]])
+
+        print(sortedDict)
+        return sortedDict
 
 
 # 스타트 클래스
