@@ -118,6 +118,15 @@ class Function():
             print('{0} |\t{1}\t\t{2}\t{3}\t{4}\t{5}\t{6}\t|'.format(cnt, key, value[0], value[1], value[2], value[3], value[4]))
             cnt += 1
         return True
+
+    @staticmethod
+    def sortDict(object, option=0):
+        listData = []
+        for key, value in object.dict.items():
+                lsitData.append()
+        while True:
+            for i in range(len(listData)):
+                if listData[i][]
         
 
 
