@@ -14,11 +14,9 @@ class ManageFile():
             with open('gradeDB.p', 'wb') as file:
                 data = {}
                 pickle.dump(data,file)
-                pass
 
         with open('gradeDB.p', 'rb') as file:
             data=pickle.load(file)
-            # print(type(data), data
 
 
 
