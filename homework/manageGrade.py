@@ -58,8 +58,8 @@ def deleteData(data):
     while True:
         name = input('삭제할 이름을 입력하세요 :')
         if printDic(data, name)==True:
-            print('위 데이터가 정상적으로 삭제 되었습니다.')
             data.pop(name)
+            print('위 데이터가 정상적으로 삭제 되었습니다.')
             fileSave(data)
             break
         else:
@@ -103,13 +103,12 @@ def updateData(data):
             break
 
 def searchName(data):
-    while True:
-        name = input('검색할 이름을 입력하세요 : ')
-        if printDic(data, name)==True:
-            break
-        else:
-            print('해당 데이터를 찾을 수 없습니다.')
-            break
+    name = input('검색할 이름을 입력하세요 : ')
+    if printDic(data, name)==True:
+        break
+    else:
+        print('해당 데이터를 찾을 수 없습니다.')
+        break
 
 def searchAvg(data):
     score = int(input('검색할 평균점수를 입력하세요 : '))
@@ -152,7 +151,7 @@ def main():
         print('--------------------------------------------------------')
         print('| 1.입력  2.출력  3.검색  4.삭제  5.수정  6.종료 |')
         useFunction = int(input('사용할 기능을 선택하세요. : '))
-        os.system('cls')
+        os.system('cls---')
         if useFunction==1:
             insertData(mainDict)
         elif useFunction==2:

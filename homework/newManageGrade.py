@@ -37,7 +37,6 @@ class ManageStudent(ManageFile):
         super().save(self.data)
         print('데이터 추가 완료되었습니다.')
 
-        pass
 
     
     def read(self):
@@ -46,10 +45,14 @@ class ManageStudent(ManageFile):
         pass
 
     
-    def update(self):
+    def update(self, name, korean, english, math):
+        sumScore = korean + math + english
+        avgScore = round(sumScore/3,1)
+        userData = {name:[korean, math, english, sumScore, avgScore]}
+        self.data[name] = userData[name]
 
         super().save(self.data)
-        pass
+        print('데이터 수정 완료되었습니다.')
 
     
     def delete(self):
@@ -64,7 +67,7 @@ class Function():
     @staticmethod
     def inputData(object):
         name = input('이름을 입력하세요 : ')
-        if Function.searchName(object.data, name)!=None:
+        if Function.findName(object.data, name)==True:
             print('이미 존재하는 이름입니다.')
         else:
             korean = int(input('국어점수를 입력하세요 : '))
@@ -76,17 +79,32 @@ class Function():
             Function.printData(Function.searchName(object.data, name))
 
     @staticmethod
+    def findName(dict, name):
+        value = dict.get(name)
+        if value!=None:
+            return True
+        else :
+            return False
+
+    @staticmethod
     def searchName(dict, name):
         value = dict.get(name)
         if value!=None:
             return {name:[value[0], value[1], value[2], value[3], value[4]]}
         else :
             return None
-        pass
+        
 
     @staticmethod
-    def searchScore(data):
+    def searchScore(dict):
+        score = int(input('검색할 평균점수를 입력하세요 : '))
+        resultDict = {}
+        for key, value in dict.items():
+            if value[4]>=score:
+                resultDict.setdefault(key, value)
         pass
+
+        return resultDict
 
     @staticmethod
     def printData(dict):
@@ -134,16 +152,60 @@ class start():
     
     @staticmethod
     def printAllData(object):
-        
+        Function.printData(object.data)
         pass
     
     @staticmethod
     def searchData(object):
-        pass
+        print('| 1.이름검색  2.평균검색 3.뒤로가기|')
+        useFunction = int(input('사용할 기능을 선택하세요. : '))
+        
+        if useFunction==1:
+            name = input('검색할 이름을 입력하세요 : ')
+            if Function.findName(object.data, name)==True:
+                print('| 현재 데이터 |')
+                Function.printData(Function.searchName(object.data, name))
+            else:
+                print('해당 데이터를 찾을 수 없습니다.')
+        elif useFunction==2:
+            print('| 현재 데이터 |')
+            Function.printData(Function.searchScore(object.data))
+
+
+            
 
     @staticmethod
     def updateData(object):
-        pass
+        name = input('수정할 이름을 입력하세요 : ')
+        if Function.findName(object.data, name)==True:
+            print('| 현재 데이터 |')
+            Function.printData(Function.searchName(object.data, name))
+
+            value = object.data.get(name)
+
+            print('| 1.국어  2.영어  3.수학  0.모두 |')
+
+            option = int(input('수정할 과목을 선택하세요 : '))
+
+            korean = value[0]
+            math = value[1]
+            english = value[2]
+
+            if option==1 or option==0:
+                korean = int(input('국어점수를 입력하세요 : '))
+            if option==2 or option==0:
+                math = int(input('영어점수를 입력하세요 : '))
+            if option==3 or option==0:
+                english = int(input('수학점수를 입력하세요 : '))
+
+            object.update(name, korean, math, english)
+
+            print('| 현재 데이터 |')
+            Function.printData(Function.searchName(object.data, name))
+        else:
+            print('해당 데이터를 찾을 수 없습니다.')
+
+
 
     @staticmethod
     def deleteData(object):
