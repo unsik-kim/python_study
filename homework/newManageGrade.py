@@ -1,5 +1,3 @@
-import os
-
 
 ## 파일관리 클래스
 class ManageFile():
@@ -11,8 +9,11 @@ class ManageFile():
 
     def load(self, data):
         import pickle
+        import os
         if os.path.isfile('gradeDB.p')==False:   # DB 파일 유무 확인
             with open('gradeDB.p', 'wb') as file:
+                data = {}
+                pickle.dump(data,file)
                 pass
 
             with open('gradeDB.p', 'rb') as file:
@@ -24,39 +25,45 @@ class ManageFile():
 ## 학생관리 클래스
 class ManageStudent(ManageFile):
     def __init__(self):
-
-        data = {}
+        self.data = super.load()
         pass
 
     def create(self):
         
+        super.save(self.data)
         pass
 
     
     def read(self):
+        self.data = super.load()
+
         pass
 
     
     def update(self):
+
+        super.save(self.data)
         pass
 
     
     def delete(self):
+
+        super.save(self.data)
         pass
 
 
 ## 기능 클래스
 class Function():
     @staticmethod
-    def inputData():
+    def inputData(data):
         pass
 
     @staticmethod
-    def searchName():
+    def searchName(data):
         pass
 
     @staticmethod
-    def searchScore():
+    def searchScore(data):
         pass
 
     @staticmethod
@@ -68,32 +75,32 @@ class Function():
 class start():
 
     @staticmethod
-    def selectFunction(people):
+    def selectFunction(data):
         pass
 
     @staticmethod
-    def createData():
+    def createData(data):
         pass
     
     @staticmethod
-    def printAllData():
+    def printAllData(data):
         pass
     
     @staticmethod
-    def searchData():
+    def searchData(data):
         pass
 
     @staticmethod
-    def updateData():
+    def updateData(data):
         pass
 
     @staticmethod
-    def deleteData():
+    def deleteData(data):
         pass
 
 
 
 def main():
-    people = ManageStudent()
-    start.selectFunction(people)
+    data = ManageStudent()
+    start.selectFunction(data)
     pass
